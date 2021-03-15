@@ -11,7 +11,7 @@ public class NilankaTermCallable implements Callable<BigDecimal> {
 
     public static final String SYS_PROP_SCALE_KEY = "NilankaTerm.scale";
     private static int scale;
-    private static BigDecimal four;
+    private static final BigDecimal four;
 
     static {
         String s = System.getProperty(SYS_PROP_SCALE_KEY, "6");

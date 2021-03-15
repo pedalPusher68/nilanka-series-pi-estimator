@@ -31,7 +31,7 @@ public class InfiniteSeriesEngineRunner {
         } catch (NumberFormatException e) {
             System.out.println(String.format("N \"%s\" is not an integer - defaulting to %d.", str, N));
         }
-        rawArgs.put("N", str.toString());
+        rawArgs.put("N", str);
 
         engine.configureEngine(rawArgs);
         engine.computeSeries();
@@ -59,7 +59,7 @@ public class InfiniteSeriesEngineRunner {
         }
 
         if (argMap.containsKey("echoInputs")
-            && "true".equalsIgnoreCase(argMap.get("echoInputs").trim().toLowerCase())) {
+            && "true".equalsIgnoreCase(argMap.get("echoInputs").trim())) {
             System.out.println("Input Arguments to InfiniteSeriesEngineRunner");
             for (String key : argMap.keySet()) {
                 System.out.println(String.format("\t %s = '%s'", key, argMap.get(key)));

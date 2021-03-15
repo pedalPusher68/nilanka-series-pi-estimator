@@ -7,13 +7,13 @@ import java.util.Map;
  */
 public interface InfiniteSeriesEngine {
 
-    public void configureEngine(Map<String, String> config);
+    void configureEngine(Map<String, String> config);
 
-    public void computeSeries();
+    void computeSeries();
 
-    public String getComputedResults();
+    String getComputedResults();
 
-    public long getNumberOfTermsUsed();
+    long getNumberOfTermsUsed();
 
-    public void printCurrentResult(long termNumber, String termValue);
+    void printCurrentResult(long termNumber, String termValue);
 }

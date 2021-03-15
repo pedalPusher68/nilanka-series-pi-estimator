@@ -16,7 +16,7 @@ public class PiTermCollector implements Runnable {
     private final ConcurrentSkipListMap<Long, Future<BigDecimal>> collector;
     AtomicReference<BigDecimal> piValue;
     private long lastTerm;
-    private NilankaSeriesEngine engine;
+    private final NilankaSeriesEngine engine;
 
     public PiTermCollector(ConcurrentSkipListMap<Long, Future<BigDecimal>> collector, long startTerm, NilankaSeriesEngine engine) {
         this.collector = collector;

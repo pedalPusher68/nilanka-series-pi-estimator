@@ -6,6 +6,6 @@
 public enum SeriesOutputs {
 
     SIMPLE_FORMAT,
-    ENUMERATED_FORMAT;
+    ENUMERATED_FORMAT
 
 }
