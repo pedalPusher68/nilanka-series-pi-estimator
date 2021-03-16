@@ -25,7 +25,7 @@ application {
 
 run {
     args = [
-            'echoInputs=true', 'N=50000',
+            'echoInputs=true', 'N=50',
             'seriesEngineClass=NilankaSeriesMultiThreadedEngine',
             'scale=16'
     ]
