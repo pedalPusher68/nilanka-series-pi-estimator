@@ -13,12 +13,12 @@ import java.util.concurrent.atomic.AtomicReference;
 public class PiTermCollector implements Runnable {
 
     private final Object monitor = new Object();
-    private final ConcurrentSkipListMap<Long, Future<BigDecimal>> collector;
+    private final ConcurrentSkipListMap<Long, Future<SeriesTerm>> collector;
     AtomicReference<BigDecimal> piValue;
     private long lastTerm;
     private final NilankaSeriesEngine engine;
 
-    public PiTermCollector(ConcurrentSkipListMap<Long, Future<BigDecimal>> collector, long startTerm, NilankaSeriesEngine engine) {
+    public PiTermCollector(ConcurrentSkipListMap<Long, Future<SeriesTerm>> collector, long startTerm, NilankaSeriesEngine engine) {
         this.collector = collector;
         this.lastTerm = startTerm;
         this.engine = engine;
@@ -30,15 +30,17 @@ public class PiTermCollector implements Runnable {
 
         while( true ) {
             if (collector.containsKey(lastTerm)) {
-                Future<BigDecimal> term = collector.get(lastTerm);
-                if (term.isDone()) {
+                Future<SeriesTerm> future = collector.get(lastTerm);
+                long t1 = System.nanoTime();
+                if (future.isDone()) {
                     synchronized ( monitor ) {
                         try {
-                            BigDecimal termVal = term.get();
+                            SeriesTerm term = future.get();
                             String thread = Long.toString(Thread.currentThread().getId()) + "-" + Thread.currentThread().getName();
+                            thread += " Nilanka term thread => "+term.getThreadId();
                             // add it... print it... remove this Future from the map
-                            piValue.set( piValue.get().add(term.get()) );
-                            engine.printCurrentResult(piValue.get().toString(), lastTerm, thread, 0L);
+                            piValue.set( piValue.get().add(term.getValue()) );
+                            engine.printCurrentResult(piValue.get().toString(), lastTerm, thread, System.nanoTime() - t1);
 //                            System.out.println(String.format("%d.  %s", lastTerm, piValue ));
                             collector.remove(lastTerm);
                             lastTerm++;

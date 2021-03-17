@@ -17,7 +17,7 @@ public class NilankaSeriesMultiThreadedEngine extends NilankaSeriesEngine {
         long granularity = getGranularity(N);
         long count = 1;
 
-        ConcurrentSkipListMap<Long, Future<BigDecimal>> collector = new ConcurrentSkipListMap<>();
+        ConcurrentSkipListMap<Long, Future<SeriesTerm>> collector = new ConcurrentSkipListMap<>();
         PiTermCollector piTermCollector = new PiTermCollector(collector,count + 1, this);
 
         String thread = Long.toString(Thread.currentThread().getId()) + "-" + Thread.currentThread().getName();
