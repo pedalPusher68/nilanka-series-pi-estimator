@@ -20,7 +20,8 @@ public class NilankaSeriesMultiThreadedEngine extends NilankaSeriesEngine {
         ConcurrentSkipListMap<Long, Future<BigDecimal>> collector = new ConcurrentSkipListMap<>();
         PiTermCollector piTermCollector = new PiTermCollector(collector,count + 1, this);
 
-        printCurrentResult(count++, piTermCollector.getPi().toString());
+        String thread = Long.toString(Thread.currentThread().getId()) + "-" + Thread.currentThread().getName();
+        printCurrentResult(piTermCollector.getPi().toString(), count++, thread, 0L);
         if (N > 1) {
             long d1 = 2;
             long d2 = 3;

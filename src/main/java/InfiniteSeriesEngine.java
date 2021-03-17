@@ -15,5 +15,19 @@ public interface InfiniteSeriesEngine {
 
     long getNumberOfTermsUsed();
 
-    void printCurrentResult(long termNumber, String termValue);
+    /**
+     *     NO_PRINTING,
+     *     SIMPLE_FORMAT,
+     *     ENUMERATED_FORMAT,
+     *     THREAD_ID_FORMAT,
+     *     THREAD_ID_ENUMERATED_FORMAT,
+     *     TIME_PROFILING_FORMAT,
+     *     FULL_DETAILS_FORMAT
+     *
+     * @param termValue
+     * @param termNumber
+     * @param threadId
+     * @param timeDeltaNs
+     */
+    void printCurrentResult(String termValue, long termNumber, String threadId, long timeDeltaNs);
 }

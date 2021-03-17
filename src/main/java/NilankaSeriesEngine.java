@@ -67,13 +67,41 @@ public abstract class NilankaSeriesEngine implements InfiniteSeriesEngine {
         return this.pi.toString();
     }
 
+    /**
+     *     NO_PRINTING,
+     *     SIMPLE_FORMAT,
+     *     ENUMERATED_FORMAT,
+     *     THREAD_ID_FORMAT,
+     *     THREAD_ID_ENUMERATED_FORMAT,
+     *     TIME_PROFILING_FORMAT,
+     *     FULL_DETAILS_FORMAT
+     *
+     * @param termValue
+     * @param termNumber
+     * @param threadId
+     * @param timeDeltaNs
+     */
     @Override
-    public void printCurrentResult(long termNumber, String termValue) {
+    public void printCurrentResult(String termValue, long termNumber, String threadId, long timeDeltaNs) {
         switch(outputFormat) {
+            case NO_PRINTING:
+                break;
             case ENUMERATED_FORMAT:
                 System.out.println(String.format("%d.  %s", termNumber, termValue ));
                 break;
-            case SIMPLE_FORMAT:
+            case THREAD_ID_FORMAT:
+                System.out.println(String.format("%s:  %s", threadId, termValue ));
+                break;
+            case THREAD_ID_ENUMERATED_FORMAT:
+                System.out.println(String.format("%d.  %s:  %s", termNumber, threadId, termValue ));
+                break;
+            case TIME_PROFILING_FORMAT:
+                System.out.println(String.format("%s     %d ns", termValue, timeDeltaNs ));
+                break;
+            case FULL_DETAILS_FORMAT:
+                System.out.println(String.format("%d.  %s:  %s     %d ns", termNumber, threadId, termValue, timeDeltaNs ));
+                break;
+            case SIMPLE_FORMAT:  // Default format
             default:
                 System.out.println(String.format("%s", termValue ));
                 break;

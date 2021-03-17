@@ -26,11 +26,14 @@ public class NilankaSeriesSingleThreadedEngine extends NilankaSeriesEngine {
         BigDecimal TERM = four.divide( DEN, RoundingMode.HALF_UP );
         long nth = 1;
 
-        printCurrentResult(nth++, pi.toString());
+        String thread = Long.toString(Thread.currentThread().getId()) + "-" + Thread.currentThread().getName();
+        printCurrentResult(pi.toString(), nth++, thread, 0L);
+
         do {
             pi = pi.add(TERM);
             setPi(pi);
-            printCurrentResult(nth++, pi.toString());
+            thread = Long.toString(Thread.currentThread().getId()) + "-" + Thread.currentThread().getName();
+            printCurrentResult(pi.toString(), nth++, thread, 0L);
 //            System.out.println(String.format("%d.  %s", nth++, pi.toString() ));
 //            if (N % 1000000 == 0) {
 //                System.out.println(String.format("%d.  %s", N, pi.toString() ));

@@ -35,9 +35,10 @@ public class PiTermCollector implements Runnable {
                     synchronized ( monitor ) {
                         try {
                             BigDecimal termVal = term.get();
+                            String thread = Long.toString(Thread.currentThread().getId()) + "-" + Thread.currentThread().getName();
                             // add it... print it... remove this Future from the map
                             piValue.set( piValue.get().add(term.get()) );
-                            engine.printCurrentResult(lastTerm, piValue.get().toString());
+                            engine.printCurrentResult(piValue.get().toString(), lastTerm, thread, 0L);
 //                            System.out.println(String.format("%d.  %s", lastTerm, piValue ));
                             collector.remove(lastTerm);
                             lastTerm++;
