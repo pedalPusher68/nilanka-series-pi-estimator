@@ -28,6 +28,6 @@ run {
             'echoInputs=true', 'N=5000',
             'seriesEngineClass=NilankaSeriesMultiThreadedEngine',
             'scale=16',
-            'printFormat=FULL_DETAILS_FORMAT'
+            'printFormat=SIMPLE_FORMAT'
     ]
 }
