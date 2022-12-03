@@ -28,3 +28,5 @@ jobs:
         run: ./gradlew properties build
       - name: Run with Gradle
         run: ./gradlew run
+
+
