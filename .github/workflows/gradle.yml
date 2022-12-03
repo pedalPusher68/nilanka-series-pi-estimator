@@ -12,10 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 12
-        uses: actions/setup-java@v1
+      - name: Setup Java JDK 18
         with:
-          java-version: 12
+          java-version: 18
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
